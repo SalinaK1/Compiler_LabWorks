@@ -21,7 +21,7 @@ if __name__=="__main__":
             j=0
             while j < len(gram[i]):
                 if '|' == gram[i][j]:
-                    if gram[i][j+1]==c:
+                    if gram[i][j+1]==c:         #Look at the terminal after |
                         found = True
                         found_at.append(i)
                 j+=1
@@ -31,18 +31,18 @@ if __name__=="__main__":
     if found:
         recursion_at = [x+1 for x in found_at]
         print(f"\nLeft Recursion found at rule {recursion_at}.\n")
-        check=False
-        cont = False
+        check=False             #To continue looking for terminal before the next |
+        cont = False            #check for rule with recursion and cont for rule without recursion
         for i in found_at:
             original = []
             new = []
             c=gram[i][0]
             index=3
             while index < len(gram[i]):
-                if (gram[i][index] == c or check) and gram[i][index+1]!='|' and gram[i][index+1] != '$':
+                if (gram[i][index] == c or check) and gram[i][index+1]!='|' and gram[i][index+1] != '$':    #for rules A->Aα
                     check=True
                     new.append(gram[i][index+1])
-                elif gram[i][index]!= '|' and (gram[i][index-1] == '|' or gram[i][index-1] == '>' or cont) and gram[i][index] != '$':
+                elif gram[i][index]!= '|' and (gram[i][index-1] == '|' or gram[i][index-1] == '>' or cont) and gram[i][index] != '$':  #for rules A->ß 
                     cont = True
                     original.append(gram[i][index])
                 else:
