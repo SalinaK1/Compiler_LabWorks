@@ -1,15 +1,4 @@
-if __name__=="__main__":
-    gram=[]
-    lines = int(input("Enter the number of rules in production: "))
-    print("Enter the production:")
-    for i in range(lines):
-        try:
-            line = input()
-        except EOFError:
-            break
-        line = line + '$'
-        gram.append(line)
-
+def rem_left_recursion(gram):
     found = False
     found_at=[]
     for i in range(lines):
@@ -70,3 +59,20 @@ if __name__=="__main__":
             print(f"The production rule {rule} will be decomposed as {c}->{original} and {c}*->{new}")
     else:
         print("Left recursion not found.")
+
+
+if __name__=="__main__":
+    grammar=[]
+    lines = int(input("Enter the number of rules in production: "))
+    print("Enter the production:")
+    for i in range(lines):
+        try:
+            line = input()
+        except EOFError:
+            break
+        line = line + '$'
+        grammar.append(line)
+    
+    rem_left_recursion(grammar)
+
+    
