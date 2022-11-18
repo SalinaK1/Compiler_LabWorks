@@ -2,6 +2,10 @@ def rem_left_recursion(gram):
     found = False
     found_at=[]
     for i in range(lines):
+        # first_production = gram[i].find('>') + 1    TODO: Make it work for double charactered terminals
+        # terminal = gram[i].find('-')
+        # c=gram[i][:terminal]
+        # length_of_terminal = len(c)
         c=gram[i][0]
         if gram[i][3]==c:
             found = True
